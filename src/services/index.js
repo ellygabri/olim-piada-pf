@@ -111,6 +111,13 @@ const atletaJovem = atletas => {
   return { name: atletaName, age: menorIdade }
 }
 
+const altetaDeBasqueteMaisAltoQueJaCompetiuNasOlimpiadas = (atletas) => {
+  return atletas.filter(atleta => atleta.Height !== 'NENHUMA').reduce((acc, atleta) => {
+    return !acc || parseInt(atleta.Height) > parseInt(acc.Height) ? atleta : acc
+  }, null)
+
+}
+
 fetch('/src/services/a.csv')
   .then(response => {
     return response.text()
