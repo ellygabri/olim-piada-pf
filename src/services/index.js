@@ -111,11 +111,16 @@ const atletaJovem = atletas => {
   return { name: atletaName, age: menorIdade }
 }
 
+/*
+ Nessa função como o nome já indica, possui o objetivo de encontrar o atleta mais alto que já competiu nas olimpiadas. 
+ Primeiramente removemos os atletas que não possuem alturas declaradas em nossos dados via .filter()
+ Depois utilizamos do .reduce() para encontrar o atleta mais alto.
+ Sendo que o que o .reduce() retorna é a saída de nossa função.
+*/
 const altetaDeBasqueteMaisAltoQueJaCompetiuNasOlimpiadas = (atletas) => {
   return atletas.filter(atleta => atleta.Height !== 'NENHUMA').reduce((acc, atleta) => {
     return !acc || parseInt(atleta.Height) > parseInt(acc.Height) ? atleta : acc
   }, null)
-
 }
 
 fetch('/src/services/a.csv')
