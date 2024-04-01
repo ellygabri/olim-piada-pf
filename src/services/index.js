@@ -119,9 +119,35 @@ const atletaJovem = atletas => {
 */
 const altetaDeBasqueteMaisAltoQueJaCompetiuNasOlimpiadas = (atletas) => {
   return atletas.filter(atleta => atleta.Height !== 'NENHUMA').reduce((acc, atleta) => {
-    return !acc || parseInt(atleta.Height) > parseInt(acc.Height) ? atleta : acc
+    return !acc || atleta.Height > acc.Height ? atleta : acc
   }, null)
 }
+
+/*
+Nessa função buscamos saber qual cidade sede teve mais jogadoras femininas ao longo das olimpiadas.
+Para que isso seja possivel começamos com um .filter() salvando então uma cópia contendo somente as jogadoras de basquete.
+Depois disso vamos para a contagem de cidades e utilizamos do .reduce() como de costume onde ela conta o número de jogadoras por cidade.
+Note que o trecho "acc[atleta.City] = (acc[atleta.City] || 0) + 1" verifica se a cidade já está no acumulador. Caso esteja, incrementa o contador. Se não, inicializa o contador em 1.
+Após essas duas etapas iniciais utilizamos novamente o .reduce() agora em cima dos pares cidade e contagem pertencetes ao cidadecComMaisJogadoras.
+O contador inicia como null e a cada iteração verificamos se a cidade atual tem mais jogadoras do que a cidade armazenada no acumulador. Caso tenha, atualizamos as informações.
+Enfim a função retorna o nome da cidade que teve mais jogadoras.
+*/
+
+const cidadeAnfitriaDeJogosOndeTeveMaisAtletasFemininas = (atletas) => {
+  const jogadorasDeBasquete = atletas.filter(atleta => atleta.Sex === 'F')
+
+  const contagemDeCidades = jogadorasDeBasquete.reduce((acc, atleta) => {
+    acc[atleta.City] = (acc[atleta.City] || 0) + 1
+    return acc
+  }, {})
+
+  const cidadeComMaisJogadoras = Object.entries(contagemDeCidades).reduce((acc, [cidade, contagem]) => {
+    return !acc || contagem > acc.contagem ? {cidade, contagem} : acc
+  }, null)
+
+  return cidadeComMaisJogadoras.cidade
+}
+
 
 fetch('/src/services/a.csv')
   .then(response => {
