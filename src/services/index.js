@@ -148,30 +148,54 @@ const cidadeAnfitriaDeJogosOndeTeveMaisAtletasFemininas = (atletas) => {
   return cidadeComMaisJogadoras.cidade
 }
 
+/*
+As próximas 4 funções respeitam o mesmo padrão de:
+Primeiro filtrar atletas por gênero, medalha de ouro ou ausência de medalha e sua altura.
+Depois calcula-se a altura total com um reduce, que é uma simples soma de todos os valores de altura com acc iniciando em 0 pra não dar ruim.
+Por fim, temos um return com uma média airtmética do total pela quantidade de atletas que filtramos.
+*/
+
 const mediaDaAlturaDeAtletasMasculinosComOuro = (atletas) => {
   const atletasMasculinosOuro = atletas.filter(atleta => atleta.Sex === 'M' && atleta.Medal === 'Gold' && atleta.Height !== 'NENHUMA')
-  const totalAltura = atletasMasculinosOuro.reduce((acc, atleta) => acc + atleta.Height, 0)
-  return totalAltura / atletasMasculinosOuro.length
+  const totalDaAltura = atletasMasculinosOuro.reduce((acc, atleta) => acc + atleta.Height, 0)
+  return totalDaAltura / atletasMasculinosOuro.length
 }
 
 const mediaDaAlturaDeAtletasMasculinosSemMedalha = (atletas) => {
   const atletasMasculinosSemMedalha = atletas.filter(atleta => atleta.Sex === 'M' && atleta.Medal === 'NENHUMA' && atleta.Height !== 'NENHUMA')
-  const totalAltura = atletasMasculinosSemMedalha.reduce((acc, atleta) => acc + atleta.Height, 0)
-  return totalAltura / atletasMasculinosSemMedalha.length
+  const totalDaAltura = atletasMasculinosSemMedalha.reduce((acc, atleta) => acc + atleta.Height, 0)
+  return totalDaAltura / atletasMasculinosSemMedalha.length
 }
 
 const mediaDaAlturaDeAtletasFemininasComOuro = (atletas) => {
   const atletasFemininasOuro = atletas.filter(atleta => atleta.Sex === 'F' && atleta.Medal === 'Gold' && atleta.Height !== 'NENHUMA')
-  const totalAltura = atletasFemininasOuro.reduce((acc, atleta) => acc + atleta.Height, 0)
-  return totalAltura / atletasFemininasOuro.length
+  const totalDaAltura = atletasFemininasOuro.reduce((acc, atleta) => acc + atleta.Height, 0)
+  return totalDaAltura / atletasFemininasOuro.length
 }
-
 
 const mediaDaAlturaDeAtletasFemininasSemMedalha = (atletas) => {
   const atletasFemininasSemMedalha = atletas.filter(atleta => atleta.Sex === 'F' && atleta.Medal === 'NENHUMA' && atleta.Height !== 'NENHUMA')
-  const totalAltura = atletasFemininasSemMedalha.reduce((acc, atleta) => acc + atleta.Height, 0)
-  return totalAltura / atletasFemininasSemMedalha.length
+  const totalDaAltura = atletasFemininasSemMedalha.reduce((acc, atleta) => acc + atleta.Height, 0)
+  return totalDaAltura / atletasFemininasSemMedalha.length
 }
+
+/*
+Função que chama e "armazena" o resultado das 4 funções acimas para uso posterior.
+*/
+const mediasDeOuroESemMedalha = (atletas) => {
+  const mediaMasculinaOuro = mediaDaAlturaDeAtletasMasculinosComOuro(atletas)
+  const mediaMasculinaSemMedalha = mediaDaAlturaDeAtletasMasculinosSemMedalha(atletas)
+  const mediaFemininaOuro = mediaDaAlturaDeAtletasFemininasComOuro(atletas)
+  const mediaFemininaSemMedalha = mediaDaAlturaDeAtletasFemininasSemMedalha(atletas)
+
+  return {
+    mediaMasculinaOuro,
+    mediaMasculinaSemMedalha,
+    mediaFemininaOuro,
+    mediaFemininaSemMedalha
+  }
+}
+
 
 fetch('/src/services/a.csv')
   .then(response => {
