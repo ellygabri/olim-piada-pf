@@ -1,3 +1,24 @@
+/*
+Tipagem do objeto de informações dos Atletas
+type Athletic  = {
+  age: string,
+  city: string,
+  event: string,
+  games: string,
+  height: string,
+  id:string:string,
+  medal: string,
+  name:string,
+  noc:string,
+  season: string,
+  sex: string,
+  sport:string,
+  team:string,
+  weight:string,
+  year:string
+} 
+*/
+
 function processCSVData(csvData) {
   // Divide as linhas do CSV
   var lines = csvData.split('\n')
@@ -117,10 +138,12 @@ const atletaJovem = atletas => {
  Depois utilizamos do .reduce() para encontrar o atleta mais alto.
  Sendo que o que o .reduce() retorna é a saída de nossa função.
 */
-const altetaDeBasqueteMaisAltoQueJaCompetiuNasOlimpiadas = (atletas) => {
-  return atletas.filter(atleta => atleta.Height !== 'NENHUMA').reduce((acc, atleta) => {
-    return !acc || atleta.Height > acc.Height ? atleta : acc
-  }, null)
+const altetaDeBasqueteMaisAltoQueJaCompetiuNasOlimpiadas = atletas => {
+  return atletas
+    .filter(atleta => atleta.height !== 'NENHUMA')
+    .reduce((acc, atleta) => {
+      return !acc || Number(atleta.height) > Number(acc.height) ? atleta : acc
+    }, null)
 }
 
 /*
@@ -133,17 +156,20 @@ O contador inicia como null e a cada iteração verificamos se a cidade atual te
 Enfim a função retorna o nome da cidade que teve mais jogadoras.
 */
 
-const cidadeAnfitriaDeJogosOndeTeveMaisAtletasFemininas = (atletas) => {
-  const jogadorasDeBasquete = atletas.filter(atleta => atleta.Sex === 'F')
+const cidadeAnfitriaDeJogosOndeTeveMaisAtletasFemininas = atletas => {
+  const jogadorasDeBasquete = atletas.filter(atleta => atleta.sex === 'F')
 
   const contagemDeCidades = jogadorasDeBasquete.reduce((acc, atleta) => {
-    acc[atleta.City] = (acc[atleta.City] || 0) + 1
+    acc[atleta.city] = (acc[atleta.city] || 0) + 1
     return acc
   }, {})
 
-  const cidadeComMaisJogadoras = Object.entries(contagemDeCidades).reduce((acc, [cidade, contagem]) => {
-    return !acc || contagem > acc.contagem ? {cidade, contagem} : acc
-  }, null)
+  const cidadeComMaisJogadoras = Object.entries(contagemDeCidades).reduce(
+    (acc, [cidade, contagem]) => {
+      return !acc || contagem > acc.contagem ? { cidade, contagem } : acc
+    },
+    null,
+  )
 
   return cidadeComMaisJogadoras.cidade
 }
@@ -155,68 +181,89 @@ Depois calcula-se a altura total com um reduce, que é uma simples soma de todos
 Por fim, temos um return com uma média airtmética do total pela quantidade de atletas que filtramos.
 */
 
-const mediaDaAlturaDeAtletasMasculinosComOuro = (atletas) => {
-  const atletasMasculinosOuro = atletas.filter(atleta => atleta.Sex === 'M' && atleta.Medal === 'Gold' && atleta.Height !== 'NENHUMA')
-  const totalDaAltura = atletasMasculinosOuro.reduce((acc, atleta) => acc + atleta.Height, 0)
+const mediaDaAlturaDeAtletasMasculinosComOuro = atletas => {
+  const atletasMasculinosOuro = atletas.filter(
+    atleta =>
+      atleta.sex === 'M' &&
+      atleta.medal === 'Gold' &&
+      atleta.height !== 'NENHUMA',
+  )
+  const totalDaAltura = atletasMasculinosOuro.reduce(
+    (acc, atleta) => acc + Number(atleta.height),
+    0,
+  )
   return totalDaAltura / atletasMasculinosOuro.length
 }
 
-const mediaDaAlturaDeAtletasMasculinosSemMedalha = (atletas) => {
-  const atletasMasculinosSemMedalha = atletas.filter(atleta => atleta.Sex === 'M' && atleta.Medal === 'NENHUMA' && atleta.Height !== 'NENHUMA')
-  const totalDaAltura = atletasMasculinosSemMedalha.reduce((acc, atleta) => acc + atleta.Height, 0)
+const mediaDaAlturaDeAtletasMasculinosSemMedalha = atletas => {
+  const atletasMasculinosSemMedalha = atletas.filter(
+    atleta =>
+      atleta.sex === 'M' &&
+      atleta.medal === 'NENHUMA' &&
+      atleta.height !== 'NENHUMA',
+  )
+  const totalDaAltura = atletasMasculinosSemMedalha.reduce(
+    (acc, atleta) => acc + Number(atleta.height),
+    0,
+  )
   return totalDaAltura / atletasMasculinosSemMedalha.length
 }
 
-const mediaDaAlturaDeAtletasFemininasComOuro = (atletas) => {
-  const atletasFemininasOuro = atletas.filter(atleta => atleta.Sex === 'F' && atleta.Medal === 'Gold' && atleta.Height !== 'NENHUMA')
-  const totalDaAltura = atletasFemininasOuro.reduce((acc, atleta) => acc + atleta.Height, 0)
+const mediaDaAlturaDeAtletasFemininasComOuro = atletas => {
+  const atletasFemininasOuro = atletas.filter(
+    atleta =>
+      atleta.sex === 'F' &&
+      atleta.medal === 'Gold' &&
+      atleta.height !== 'NENHUMA',
+  )
+  const totalDaAltura = atletasFemininasOuro.reduce(
+    (acc, atleta) => acc + Number(atleta.height),
+    0,
+  )
   return totalDaAltura / atletasFemininasOuro.length
 }
 
-const mediaDaAlturaDeAtletasFemininasSemMedalha = (atletas) => {
-  const atletasFemininasSemMedalha = atletas.filter(atleta => atleta.Sex === 'F' && atleta.Medal === 'NENHUMA' && atleta.Height !== 'NENHUMA')
-  const totalDaAltura = atletasFemininasSemMedalha.reduce((acc, atleta) => acc + atleta.Height, 0)
+const mediaDaAlturaDeAtletasFemininasSemMedalha = atletas => {
+  const atletasFemininasSemMedalha = atletas.filter(
+    atleta =>
+      atleta.sex === 'F' &&
+      atleta.medal === 'NENHUMA' &&
+      atleta.height !== 'NENHUMA',
+  )
+  const totalDaAltura = atletasFemininasSemMedalha.reduce(
+    (acc, atleta) => acc + Number(atleta.height),
+    0,
+  )
   return totalDaAltura / atletasFemininasSemMedalha.length
 }
 
 /*
 Função que chama e "armazena" o resultado das 4 funções acimas para uso posterior.
 */
-const mediasDeOuroESemMedalha = (atletas) => {
+const mediasDeOuroESemMedalha = atletas => {
   const mediaMasculinaOuro = mediaDaAlturaDeAtletasMasculinosComOuro(atletas)
-  const mediaMasculinaSemMedalha = mediaDaAlturaDeAtletasMasculinosSemMedalha(atletas)
+  const mediaMasculinaSemMedalha =
+    mediaDaAlturaDeAtletasMasculinosSemMedalha(atletas)
   const mediaFemininaOuro = mediaDaAlturaDeAtletasFemininasComOuro(atletas)
-  const mediaFemininaSemMedalha = mediaDaAlturaDeAtletasFemininasSemMedalha(atletas)
+  const mediaFemininaSemMedalha =
+    mediaDaAlturaDeAtletasFemininasSemMedalha(atletas)
 
   return {
     mediaMasculinaOuro,
     mediaMasculinaSemMedalha,
     mediaFemininaOuro,
-    mediaFemininaSemMedalha
+    mediaFemininaSemMedalha,
   }
 }
 
-
-fetch('/src/services/a.csv')
+const atlheticsData = fetch('/src/database/athletics.csv')
   .then(response => {
     return response.text()
   })
   .then(csvData => {
-    const pessoas = processCSVData(csvData)
-    const paisesSemMedalhaFeminina = buscarPaisesSemMedalhaFeminina(pessoas)
-    //const paisComMaisMedalha = paisComMaisMedalhas(pessoas)
-    //const atletaMaisJovem = atletaJovem(pessoas)
-    //console.log(paisComMaisMedalha)
-    //console.log({ PaisesSemMedalhaFeminina })
-    //console.log(atletaMaisJovem)
-
-    /*
-  const divisoria = document.getElementById('mulherSemMedalha')
-
-  paisesSemMedalhaFeminina.forEach(data => {
-    let pais = document.createElement('li')
-    pais.innerHTML = data
-    divisoria.appendChild(pais)
-  })
-  */
+    const data = processCSVData(csvData)
+    const media = cidadeAnfitriaDeJogosOndeTeveMaisAtletasFemininas(data)
+    console.log({
+      media,
+    })
   })
