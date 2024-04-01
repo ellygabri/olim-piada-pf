@@ -148,6 +148,30 @@ const cidadeAnfitriaDeJogosOndeTeveMaisAtletasFemininas = (atletas) => {
   return cidadeComMaisJogadoras.cidade
 }
 
+const mediaDaAlturaDeAtletasMasculinosComOuro = (atletas) => {
+  const atletasMasculinosOuro = atletas.filter(atleta => atleta.Sex === 'M' && atleta.Medal === 'Gold' && atleta.Height !== 'NENHUMA')
+  const totalAltura = atletasMasculinosOuro.reduce((acc, atleta) => acc + atleta.Height, 0)
+  return totalAltura / atletasMasculinosOuro.length
+}
+
+const mediaDaAlturaDeAtletasMasculinosSemMedalha = (atletas) => {
+  const atletasMasculinosSemMedalha = atletas.filter(atleta => atleta.Sex === 'M' && atleta.Medal === 'NENHUMA' && atleta.Height !== 'NENHUMA')
+  const totalAltura = atletasMasculinosSemMedalha.reduce((acc, atleta) => acc + atleta.Height, 0)
+  return totalAltura / atletasMasculinosSemMedalha.length
+}
+
+const mediaDaAlturaDeAtletasFemininasComOuro = (atletas) => {
+  const atletasFemininasOuro = atletas.filter(atleta => atleta.Sex === 'F' && atleta.Medal === 'Gold' && atleta.Height !== 'NENHUMA')
+  const totalAltura = atletasFemininasOuro.reduce((acc, atleta) => acc + atleta.Height, 0)
+  return totalAltura / atletasFemininasOuro.length
+}
+
+
+const mediaDaAlturaDeAtletasFemininasSemMedalha = (atletas) => {
+  const atletasFemininasSemMedalha = atletas.filter(atleta => atleta.Sex === 'F' && atleta.Medal === 'NENHUMA' && atleta.Height !== 'NENHUMA')
+  const totalAltura = atletasFemininasSemMedalha.reduce((acc, atleta) => acc + atleta.Height, 0)
+  return totalAltura / atletasFemininasSemMedalha.length
+}
 
 fetch('/src/services/a.csv')
   .then(response => {
