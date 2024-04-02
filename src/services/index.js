@@ -20,52 +20,36 @@ type Athletic  = {
 */
 
 const processCSVData = csvData => {
-  // Divide as linhas do CSV
   const lines = csvData.split('\n')
-
-  // Remove a primeira linha (cabeçalho)
   const headers = lines[0].split(',')
 
-  const pessoas = []
+  const cleanValue = value => {
+    return value.trim() === 'NA' ? 'NENHUMA' : value.trim()
+  }
 
-  // Itera sobre as linhas para extrair os dados das pessoas
-  for (var i = 1; i < lines.length; i++) {
-    const obj = {}
-    const currentLine = lines[i].split(',')
+  const extractData = line => {
+    const currentLine = line.split(',')
 
-    // Preenche o objeto com os dados
-    for (var j = 0; j < headers.length; j++) {
-      const headerValue = headers[j] ? headers[j].trim() : '' // Verifica se headers[j] é definido
-      const lineValue = currentLine[j]
-        ? currentLine[j].trim() === 'NA'
-          ? 'NENHUMA'
-          : currentLine[j].trim()
-        : '' // Verifica se currentLine[j] é definido
+    return headers.reduce((obj, header, index) => {
+      const headerValue = header ? header.trim() : ''
+      const lineValue = currentLine[index]
+        ? cleanValue(currentLine[index].trim())
+        : ''
       obj[headerValue.replace(/[\\"]/g, '').toLowerCase()] = lineValue.replace(
         /[\\"]/g,
         '',
-      ) // Montando o Objeto de cada pessoa
-    }
-
-    // Adiciona o objeto ao array de pessoas
-    pessoas.push(obj)
+      )
+      return obj
+    }, {})
   }
 
-  // Filtra o array de pessoas pelo esporte "basketball"
-  return pessoas.filter((pessoa, index) => {
-    return pessoa.sport && pessoa.sport.toLowerCase() === 'basketball' // Verifica se pessoa.sport está definido
-  })
-}
+  const pessoas = lines.slice(1).map(extractData)
 
-const listaDePaises = atletas => {
-  const lista = new Set() // Estrutura de dados imutavel e que não se repete
-  atletas.forEach(pessoa => {
-    // Faz um for dentro da lista
-    const country = pessoa.team // Pega o time que é o pais
+  const filterBySport = pessoa => {
+    return pessoa.sport && pessoa.sport.toLowerCase() === 'basketball'
+  }
 
-    lista.add(country) // pega o pais e adiciona na lista
-  })
-  return Array.from(lista)
+  return pessoas.filter(filterBySport)
 }
 
 const buscarPaisesSemMedalhaFeminina = pessoas => {
@@ -79,53 +63,48 @@ const buscarPaisesSemMedalhaFeminina = pessoas => {
     }
   })
 
-  return listaDePaises(mulherSemMedalhas) // Gera um Array a partir da lista
+  const countries = mulherSemMedalhas.map(pessoa => pessoa.team)
+
+  return countries.filter((country, i) => countries.indexOf(country) === i) // Gera um Array a partir da lista
 }
 
 const paisComMaisMedalhas = pessoas => {
-  const medalhasPorPais = {}
-  pessoas.forEach(objeto => {
-    const pais = objeto.team
-    const medalha = objeto.medal
-    // verifica se a medalha é de ouro e se o país já está no objeto de contagem.
-    if (medalha === 'Gold') {
-      if (medalhasPorPais[pais]) {
-        // Se o país já estiver no objeto, incrementamos o número de medalhas de ouro.
-        medalhasPorPais[pais]++
-      } else {
-        // Se o país ainda não estiver no objeto, iniciamos a contagem com 1.
-        medalhasPorPais[pais] = 1
-      }
-    }
-  })
-  // as variáveis para armazenar o país com mais medalhas de ouro e o número de medalhas.
-  var paisMaisMedalhas = ''
-  var maxMedalhas = 0
+  const contarMedalhasDeOuro = (acc, pessoa) => {
+    const pais = pessoa.team
+    const medalha = pessoa.medal
 
-  //  sobre as chaves (nomes dos países) do objeto de contagem.
-  Object.keys(medalhasPorPais).forEach(pais => {
-    //  se o número de medalhas deste país é maior do que o máximo atual.
-    if (medalhasPorPais[pais] > maxMedalhas) {
-      // Se for, atualizamos o país com mais medalhas e o número máximo de medalhas.
-      paisMaisMedalhas = pais
-      maxMedalhas = medalhasPorPais[pais]
+    if (medalha === 'Gold') {
+      acc[pais] = (acc[pais] || 0) + 1
     }
-  })
+    return acc
+  }
+
+  // Contagem de medalhas de ouro por país
+  const medalhasPorPais = pessoas.reduce(contarMedalhasDeOuro, {})
+
+  // Encontrar o país com mais medalhas de ouro
+  const [paisMaisMedalhas] = Object.entries(medalhasPorPais).reduce(
+    ([paisAtual, maxMedalhas], [pais, medalhas]) => {
+      return medalhas > maxMedalhas
+        ? [pais, medalhas]
+        : [paisAtual, maxMedalhas]
+    },
+    ['', 0],
+  )
 
   //  o país com mais medalhas de ouro.
   return paisMaisMedalhas
 }
 
 const atletaJovem = atletas => {
-  let menorIdade = 100
-  let atletaName = ''
-  atletas.forEach(atleta => {
-    if (atleta.medal === 'Gold' && atleta.age < menorIdade) {
-      menorIdade = atleta.age
-      atletaName = atleta.name
+  const encontrarJovemComOuro = (atletaMaisJovem, atleta) => {
+    if (atleta.medal === 'Gold' && atleta.age < atletaMaisJovem.age) {
+      return { name: atleta.name, age: atleta.age }
     }
-  })
-  return { name: atletaName, age: menorIdade }
+    return atletaMaisJovem
+  }
+
+  return atletas.reduce(encontrarJovemComOuro, { age: Infinity })
 }
 
 /*
