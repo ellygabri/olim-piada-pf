@@ -167,7 +167,8 @@ const mediaDaAlturaDeAtletasMasculinosComOuro = atletas => {
     (acc, atleta) => acc + Number(atleta.height),
     0,
   )
-  return totalDaAltura / atletasMasculinosOuro.length
+  const media = totalDaAltura / atletasMasculinosOuro.length
+  return Number(media.toFixed(2))  // Retorna o número com 2 casas decimais
 }
 
 const mediaDaAlturaDeAtletasMasculinosSemMedalha = atletas => {
@@ -181,7 +182,8 @@ const mediaDaAlturaDeAtletasMasculinosSemMedalha = atletas => {
     (acc, atleta) => acc + Number(atleta.height),
     0,
   )
-  return totalDaAltura / atletasMasculinosSemMedalha.length
+  const media = totalDaAltura / atletasMasculinosSemMedalha.length
+  return Number(media.toFixed(2))  // Retorna o número com 2 casas decimais
 }
 
 const mediaDaAlturaDeAtletasFemininasComOuro = atletas => {
@@ -195,7 +197,8 @@ const mediaDaAlturaDeAtletasFemininasComOuro = atletas => {
     (acc, atleta) => acc + Number(atleta.height),
     0,
   )
-  return totalDaAltura / atletasFemininasOuro.length
+  const media = totalDaAltura / atletasFemininasOuro.length
+  return Number(media.toFixed(2))  // Retorna o número com 2 casas decimais
 }
 
 const mediaDaAlturaDeAtletasFemininasSemMedalha = atletas => {
@@ -209,7 +212,8 @@ const mediaDaAlturaDeAtletasFemininasSemMedalha = atletas => {
     (acc, atleta) => acc + Number(atleta.height),
     0,
   )
-  return totalDaAltura / atletasFemininasSemMedalha.length
+  const media = totalDaAltura / atletasFemininasSemMedalha.length
+  return Number(media.toFixed(2))  // Retorna o número com 2 casas decimais
 }
 
 /*
@@ -217,11 +221,9 @@ Função que chama e "armazena" o resultado das 4 funções acimas para uso post
 */
 const mediasDeOuroESemMedalha = atletas => {
   const mediaMasculinaOuro = mediaDaAlturaDeAtletasMasculinosComOuro(atletas)
-  const mediaMasculinaSemMedalha =
-    mediaDaAlturaDeAtletasMasculinosSemMedalha(atletas)
+  const mediaMasculinaSemMedalha = mediaDaAlturaDeAtletasMasculinosSemMedalha(atletas)
   const mediaFemininaOuro = mediaDaAlturaDeAtletasFemininasComOuro(atletas)
-  const mediaFemininaSemMedalha =
-    mediaDaAlturaDeAtletasFemininasSemMedalha(atletas)
+  const mediaFemininaSemMedalha = mediaDaAlturaDeAtletasFemininasSemMedalha(atletas)
 
   return {
     mediaMasculinaOuro,
