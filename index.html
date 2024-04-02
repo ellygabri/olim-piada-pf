@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!--Metadata para selecionar a largura padrão da tela-->
     <link rel="stylesheet" href="/src/styles/global.css" />
+    <link rel="stylesheet" href="/src/styles/navbar.css" />
+    <link rel="stylesheet" href="/src/styles/home.css" />
+    <link rel="stylesheet" href="/src/styles/footer.css" />
     <!--Importação do arquivo css para estilo da página-->
 
     <!--Link para fonte Poppins do Google Fonts-->
@@ -16,26 +19,83 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
+
     <!--Finalizada importação de fontes-->
 
-    <title>Olim Piadas - Sua página de sabedoria</title>
+    <title>SlamDunk</title>
   </head>
   <body>
     <header>
       <nav class="navbar">
-        <div></div>
         <a href="/" class="logoLink">
           <!--Componentes de imagem para logo-->
           <img src="/src/assets/img/logo/logo.png" alt="logo" />
         </a>
         <ul class="links">
           <!--Seram as guias de navegação dentro do site-->
-          <li>Perguntas</li>
-          <li>Quem Somos?</li>
+          <li>
+            <a href="/screens/perguntas.html"> Perguntas </a>
+          </li>
+          <li>
+            <a href="/screens/about.html">Quem Somos?</a>
+          </li>
         </ul>
       </nav>
     </header>
-    <main></main>
-    <footer></footer>
+
+    <main>
+      <div class="leftContainer">
+        <a href="/screens/pergunta1.html" class="cardMaior cardUpScale">
+          <div class="backgroundGradient"></div>
+          <img
+            src="/src/assets/img/cards/enterrando.jpg"
+            alt="cara enterrando bola no basketball"
+          />
+          <p>Qual o Jogador mais novo a vencer uma Olimpiada?</p>
+        </a>
+      </div>
+      <div class="rightContainer">
+        <a href="/screens/pergunta2.html" class="cardMenor cardUpScale">
+          <div class="backgroundGradient"></div>
+          <img
+            src="/src/assets/img/cards/bola.jpg"
+            alt="cara enterrando bola no basketball"
+          />
+          <p>Qual o Jogador mais novo a vencer uma Olimpiada?</p>
+        </a>
+        <a href="/screens/pergunta3.html" class="cardMenor cardUpScale">
+          <div class="backgroundGradient"></div>
+          <img
+            src="/src/assets/img/cards/jovens.jpg"
+            alt="cara enterrando bola no basketball"
+          />
+          <p>Qual o Jogador mais novo a vencer uma Olimpiada?</p>
+        </a>
+        <a href="/screens/pergunta4.html" class="cardMenor cardUpScale">
+          <div class="backgroundGradient"></div>
+          <img
+            src="/src/assets/img/cards/mulher_costas.jpg"
+            alt="cara enterrando bola no basketball"
+          />
+          <p>Qual o Jogador mais novo a vencer uma Olimpiada?</p>
+        </a>
+      </div>
+    </main>
+
+    <div class="btnContainer">
+      <a href="/screens/perguntas.html" class="btn"> Veja mais </a>
+    </div>
+
+    <footer>
+      <div class="footerCols">
+        <a href="/">
+          <img src="src/assets/img/logo/logoDark.png" alt="logo dark" />
+        </a>
+      </div>
+      <spam>
+        todos direitos de imagem estão reservados para Gabrielly Souza e
+        Caiuã</spam
+      >
+    </footer>
   </body>
 </html>
