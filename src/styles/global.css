@@ -3,6 +3,7 @@
   --color-black: #111;
   --color-transparent: transparent;
   --color-text-light: #fff;
+  --color-text-gray: #444;
 }
 
 * {
@@ -18,7 +19,7 @@
 
 body {
   overflow-x: hidden;
-  background-image: url('../assets/img/background.jpg');
   background-size: cover;
   background-repeat: no-repeat;
+  background-color: #fafafa;
 }

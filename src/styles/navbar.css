@@ -8,6 +8,18 @@
   justify-content: space-between;
 }
 
+.logoLink {
+  position: relative;
+  display: flex;
+}
+
+.logoLink img {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  object-fit: cover;
+}
+
 .navbar a {
   position: relative;
 }

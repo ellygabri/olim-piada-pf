@@ -5,11 +5,24 @@ main {
   gap: 4rem;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  padding: 0 3rem;
-  margin: 5rem 0;
+  padding: 5rem 3rem;
   justify-items: center;
+  background-color: antiquewhite;
 }
 
+header {
+  background-color: var(--color-primary);
+}
+
+header .navbar .logoLink {
+  width: 200px;
+  height: 80px;
+}
+
+header .navbar .links li a::after {
+  background-color: var(--color-text-light);
+  height: 3px;
+}
 .card {
   display: flex;
   flex-direction: column;

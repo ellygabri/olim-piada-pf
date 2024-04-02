@@ -9,6 +9,9 @@
   border-radius: 2rem;
 }
 
+body {
+  background-image: url('../assets/img/background.jpg');
+}
 main {
   width: 100vw;
   min-height: 80vh;

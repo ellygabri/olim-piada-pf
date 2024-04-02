@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    <link rel="stylesheet" href="/src/styles/footer.css" />
+    <link rel="stylesheet" href="/src/styles/pergunta.css" />
+
+    <title>
+      Empoderamento nas quadras: Qual país brilhou ao ser recordista de
+      participação feminina nas olimpiadas.
+    </title>
+  </head>
+  <body>
+    <main>
+      <div class="banner">
+        <div class="gradient"></div>
+        <img src="/src/assets/img/cards/pergunta5.jpg" alt="pessoa basket" />
+        <h2>Empoderamento nas quadras:</h2>
+        <h3>
+          Qual país brilhou ao ser recordista de participação feminina nas
+          olimpiadas.
+        </h3>
+      </div>
+
+      <article class="artigo">
+        <h2 class="title">
+          A falta de investimento e oportunidades limitadas destacam desafios
+          políticos e sociais em várias nações.
+        </h2>
+
+        <p class="paragrafo">
+          Em meio à glória e à competição intensa dos Jogos Olímpicos, uma
+          análise revela uma realidade menos celebrada: os países que nunca
+          ganharam uma medalha olímpica no basquete feminino. Enquanto potências
+          como Estados Unidos e Austrália dominam o esporte, muitos países
+          continuam a lutar para fazer sua marca, revelando lacunas profundas no
+          desenvolvimento esportivo, muitas vezes enraizadas em questões
+          políticas e sociais. Segundo dados compilados pelo Comitê Olímpico
+          Internacional, países como Bangladesh, Laos, Brunei e Mônaco estão
+          entre aqueles que ainda não conseguiram conquistar uma medalha
+          olímpica no basquete feminino. Esses países, frequentemente
+          confrontados com desafios socioeconômicos e políticos, enfrentam
+          dificuldades significativas para investir em infraestrutura esportiva
+          adequada e programas de desenvolvimento.
+        </p>
+        <p class="paragrafo">
+          Em muitos casos, a falta de recursos e o acesso limitado a
+          oportunidades esportivas para mulheres contribuem para o fosso entre
+          esses países e seus concorrentes mais bem-sucedidos. Políticas
+          governamentais desfavorecidas em relação ao esporte feminino e
+          questões culturais também desempenham um papel crucial na perpetuação
+          da desigualdade. Enquanto isso, vozes dentro desses países destacam a
+          necessidade urgente de priorizar o desenvolvimento do esporte feminino
+          como um catalisador para a igualdade de gênero e o empoderamento das
+          mulheres. Campanhas de conscientização e programas de base estão sendo
+          implementados em várias nações para enfrentar essas disparidades e
+          criar oportunidades para as jovens atletas.
+        </p>
+        <p class="paragrafo">
+          Enquanto o mundo volta sua atenção para os holofotes olímpicos, esta
+          análise destaca não apenas as conquistas esportivas, mas também as
+          disparidades profundas que persistem em muitos cantos do mundo. O
+          basquete feminino, um microcosmo das lutas sociais e políticas,
+          continua a ser uma arena na qual o verdadeiro espírito olímpico de
+          igualdade e oportunidade ainda tem que ser totalmente realizado.
+        </p>
+
+        <h3 class="subTitle">
+          Confira abaixo, todos os países que nunca foram medalhistas
+        </h3>
+
+        <div id="listaPaises"></div>
+      </article>
+    </main>
+
+    <footer>
+      <div class="footerCols">
+        <a href="/">
+          <img src="../src/assets/img/logo/logoDark.png" alt="logo dark" />
+        </a>
+      </div>
+      <spam>
+        todos direitos de imagem estão reservados para Gabrielly Souza e
+        Caiuã</spam
+      >
+    </footer>
+
+    <script type="text/javascript" src="/src/services/index.js"></script>
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', () => {
+        atlheticsData.then(atletas => {
+          const paisesSemMedalhaFeminina =
+            buscarPaisesSemMedalhaFeminina(atletas)
+
+          const listaPaisesDiv = document.getElementById('listaPaises')
+
+          paisesSemMedalhaFeminina.forEach((pais, index) => {
+            const li = document.createElement('li')
+            li.textContent = index + 1 + '° ' + pais
+            listaPaisesDiv.appendChild(li)
+          })
+        })
+      })
+    </script>
+  </body>
+</html>
