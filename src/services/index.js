@@ -19,24 +19,24 @@ type Athletic  = {
 } 
 */
 
-function processCSVData(csvData) {
+const processCSVData = csvData => {
   // Divide as linhas do CSV
-  var lines = csvData.split('\n')
-  // teste
-  // Remove a primeira linha (cabeçalho)
-  var headers = lines[0].split(',')
+  const lines = csvData.split('\n')
 
-  var pessoas = []
+  // Remove a primeira linha (cabeçalho)
+  const headers = lines[0].split(',')
+
+  const pessoas = []
 
   // Itera sobre as linhas para extrair os dados das pessoas
   for (var i = 1; i < lines.length; i++) {
-    var obj = {}
-    var currentLine = lines[i].split(',')
+    const obj = {}
+    const currentLine = lines[i].split(',')
 
     // Preenche o objeto com os dados
     for (var j = 0; j < headers.length; j++) {
-      var headerValue = headers[j] ? headers[j].trim() : '' // Verifica se headers[j] é definido
-      var lineValue = currentLine[j]
+      const headerValue = headers[j] ? headers[j].trim() : '' // Verifica se headers[j] é definido
+      const lineValue = currentLine[j]
         ? currentLine[j].trim() === 'NA'
           ? 'NENHUMA'
           : currentLine[j].trim()
@@ -52,17 +52,13 @@ function processCSVData(csvData) {
   }
 
   // Filtra o array de pessoas pelo esporte "basketball"
-  var pessoasFiltradas = pessoas.filter((pessoa, index) => {
+  return pessoas.filter((pessoa, index) => {
     return pessoa.sport && pessoa.sport.toLowerCase() === 'basketball' // Verifica se pessoa.sport está definido
   })
-
-  // Exibe os dados filtrados no console
-  //console.log({ pessoasFiltradas })
-  return pessoasFiltradas
 }
 
 const listaDePaises = atletas => {
-  let lista = new Set() // Estrutura de dados imutavel e que não se repete
+  const lista = new Set() // Estrutura de dados imutavel e que não se repete
   atletas.forEach(pessoa => {
     // Faz um for dentro da lista
     const country = pessoa.team // Pega o time que é o pais
@@ -87,10 +83,10 @@ const buscarPaisesSemMedalhaFeminina = pessoas => {
 }
 
 const paisComMaisMedalhas = pessoas => {
-  var medalhasPorPais = {}
+  const medalhasPorPais = {}
   pessoas.forEach(objeto => {
-    var pais = objeto.team
-    var medalha = objeto.medal
+    const pais = objeto.team
+    const medalha = objeto.medal
     // verifica se a medalha é de ouro e se o país já está no objeto de contagem.
     if (medalha === 'Gold') {
       if (medalhasPorPais[pais]) {
@@ -262,7 +258,7 @@ const atlheticsData = fetch('/src/database/athletics.csv')
   })
   .then(csvData => {
     const data = processCSVData(csvData)
-    const media = cidadeAnfitriaDeJogosOndeTeveMaisAtletasFemininas(data)
+    const media = atletaJovem(data)
     console.log({
       media,
     })
