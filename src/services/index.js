@@ -189,7 +189,7 @@ const mediaDaAlturaDeAtletasMasculinosComOuro = atletas => {
     0,
   )
   const media = totalDaAltura / atletasMasculinosOuro.length
-  return media.toFixed(2)
+  return Number(media.toFixed(2))  // Retorna o número com 2 casas decimais
 }
 
 const mediaDaAlturaDeAtletasMasculinosSemMedalha = atletas => {
@@ -204,7 +204,7 @@ const mediaDaAlturaDeAtletasMasculinosSemMedalha = atletas => {
     0,
   )
   const media = totalDaAltura / atletasMasculinosSemMedalha.length
-  return media.toFixed(2)
+  return Number(media.toFixed(2))  // Retorna o número com 2 casas decimais
 }
 
 const mediaDaAlturaDeAtletasFemininasComOuro = atletas => {
@@ -219,7 +219,7 @@ const mediaDaAlturaDeAtletasFemininasComOuro = atletas => {
     0,
   )
   const media = totalDaAltura / atletasFemininasOuro.length
-  return media.toFixed(2)
+  return Number(media.toFixed(2))  // Retorna o número com 2 casas decimais
 }
 
 const mediaDaAlturaDeAtletasFemininasSemMedalha = atletas => {
@@ -234,7 +234,7 @@ const mediaDaAlturaDeAtletasFemininasSemMedalha = atletas => {
     0,
   )
   const media = totalDaAltura / atletasFemininasSemMedalha.length
-  return media.toFixed(2)
+  return Number(media.toFixed(2))  // Retorna o número com 2 casas decimais
 }
 
 /*
