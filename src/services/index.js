@@ -258,7 +258,7 @@ const atlheticsData = fetch('/src/database/athletics.csv')
   })
   .then(csvData => {
     const data = processCSVData(csvData)
-    const media = atletaJovem(data)
+    const media = paisComMaisMedalhas(data)
     console.log({
       media,
     })
