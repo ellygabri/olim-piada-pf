@@ -188,7 +188,8 @@ const mediaDaAlturaDeAtletasMasculinosComOuro = atletas => {
     (acc, atleta) => acc + Number(atleta.height),
     0,
   )
-  return totalDaAltura / atletasMasculinosOuro.length
+  const media = totalDaAltura / atletasMasculinosOuro.length
+  return media.toFixed(2)
 }
 
 const mediaDaAlturaDeAtletasMasculinosSemMedalha = atletas => {
@@ -202,7 +203,8 @@ const mediaDaAlturaDeAtletasMasculinosSemMedalha = atletas => {
     (acc, atleta) => acc + Number(atleta.height),
     0,
   )
-  return totalDaAltura / atletasMasculinosSemMedalha.length
+  const media = totalDaAltura / atletasMasculinosSemMedalha.length
+  return media.toFixed(2)
 }
 
 const mediaDaAlturaDeAtletasFemininasComOuro = atletas => {
@@ -216,7 +218,8 @@ const mediaDaAlturaDeAtletasFemininasComOuro = atletas => {
     (acc, atleta) => acc + Number(atleta.height),
     0,
   )
-  return totalDaAltura / atletasFemininasOuro.length
+  const media = totalDaAltura / atletasFemininasOuro.length
+  return media.toFixed(2)
 }
 
 const mediaDaAlturaDeAtletasFemininasSemMedalha = atletas => {
@@ -230,7 +233,8 @@ const mediaDaAlturaDeAtletasFemininasSemMedalha = atletas => {
     (acc, atleta) => acc + Number(atleta.height),
     0,
   )
-  return totalDaAltura / atletasFemininasSemMedalha.length
+  const media = totalDaAltura / atletasFemininasSemMedalha.length
+  return media.toFixed(2)
 }
 
 /*
@@ -238,11 +242,9 @@ Função que chama e "armazena" o resultado das 4 funções acimas para uso post
 */
 const mediasDeOuroESemMedalha = atletas => {
   const mediaMasculinaOuro = mediaDaAlturaDeAtletasMasculinosComOuro(atletas)
-  const mediaMasculinaSemMedalha =
-    mediaDaAlturaDeAtletasMasculinosSemMedalha(atletas)
+  const mediaMasculinaSemMedalha = mediaDaAlturaDeAtletasMasculinosSemMedalha(atletas)
   const mediaFemininaOuro = mediaDaAlturaDeAtletasFemininasComOuro(atletas)
-  const mediaFemininaSemMedalha =
-    mediaDaAlturaDeAtletasFemininasSemMedalha(atletas)
+  const mediaFemininaSemMedalha = mediaDaAlturaDeAtletasFemininasSemMedalha(atletas)
 
   return {
     mediaMasculinaOuro,
