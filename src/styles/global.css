@@ -1,8 +1,8 @@
 :root {
-  --color-green: #ccd5ae;
-  --color-light-green: #e9edc9;
-  --color-primary: #fb5607;
-  --color-purple: #8338ec;
+  --color-primary: #d46b3c;
+  --color-black: #111;
+  --color-transparent: transparent;
+  --color-text-light: #fff;
 }
 
 * {
@@ -13,23 +13,12 @@
   text-decoration: none;
   font-size: 16px;
   font-family: 'Poppins', sans-serif;
+  color: var(--color-text-light);
 }
 
 body {
   overflow-x: hidden;
-}
-
-.navbar {
-  display: flex;
-  width: 100vw;
-  padding: 2rem 1rem;
-  background-color: var(--color-green);
-
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.links {
-  display: flex;
-  gap: 1rem;
+  background-image: url('../assets/img/background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
