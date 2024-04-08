@@ -77,23 +77,5 @@
         Nunes</spam
       >
     </footer>
-
-    <script type="text/javascript" src="/src/services/index.js"></script>
-    <script type="text/javascript">
-      document.addEventListener('DOMContentLoaded', () => {
-        atlheticsData.then(atletas => {
-          const paisesSemMedalhaFeminina =
-            buscarPaisesSemMedalhaFeminina(atletas)
-
-          const listaPaisesDiv = document.getElementById('listaPaises')
-
-          paisesSemMedalhaFeminina.forEach((pais, index) => {
-            const li = document.createElement('li')
-            li.textContent = index + 1 + '° ' + pais
-            listaPaisesDiv.appendChild(li)
-          })
-        })
-      })
-    </script>
   </body>
 </html>
