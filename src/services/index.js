@@ -43,11 +43,11 @@ const processCSVData = csvData => {
     }, {})
   }
 
-  const pessoas = lines.slice(1).map(extractData)
-
   const filterBySport = pessoa => {
     return pessoa.sport && pessoa.sport.toLowerCase() === 'basketball'
   }
+
+  const pessoas = lines.slice(1).map(extractData)
 
   return pessoas.filter(filterBySport)
 }
@@ -168,7 +168,7 @@ const mediaDaAlturaDeAtletasMasculinosComOuro = atletas => {
     0,
   )
   const media = totalDaAltura / atletasMasculinosOuro.length
-  return Number(media.toFixed(2))  // Retorna o número com 2 casas decimais
+  return Number(media.toFixed(2)) // Retorna o número com 2 casas decimais
 }
 
 const mediaDaAlturaDeAtletasMasculinosSemMedalha = atletas => {
@@ -183,7 +183,7 @@ const mediaDaAlturaDeAtletasMasculinosSemMedalha = atletas => {
     0,
   )
   const media = totalDaAltura / atletasMasculinosSemMedalha.length
-  return Number(media.toFixed(2))  // Retorna o número com 2 casas decimais
+  return Number(media.toFixed(2)) // Retorna o número com 2 casas decimais
 }
 
 const mediaDaAlturaDeAtletasFemininasComOuro = atletas => {
@@ -198,7 +198,7 @@ const mediaDaAlturaDeAtletasFemininasComOuro = atletas => {
     0,
   )
   const media = totalDaAltura / atletasFemininasOuro.length
-  return Number(media.toFixed(2))  // Retorna o número com 2 casas decimais
+  return Number(media.toFixed(2)) // Retorna o número com 2 casas decimais
 }
 
 const mediaDaAlturaDeAtletasFemininasSemMedalha = atletas => {
@@ -213,24 +213,7 @@ const mediaDaAlturaDeAtletasFemininasSemMedalha = atletas => {
     0,
   )
   const media = totalDaAltura / atletasFemininasSemMedalha.length
-  return Number(media.toFixed(2))  // Retorna o número com 2 casas decimais
-}
-
-/*
-Função que chama e "armazena" o resultado das 4 funções acimas para uso posterior.
-*/
-const mediasDeOuroESemMedalha = atletas => {
-  const mediaMasculinaOuro = mediaDaAlturaDeAtletasMasculinosComOuro(atletas)
-  const mediaMasculinaSemMedalha = mediaDaAlturaDeAtletasMasculinosSemMedalha(atletas)
-  const mediaFemininaOuro = mediaDaAlturaDeAtletasFemininasComOuro(atletas)
-  const mediaFemininaSemMedalha = mediaDaAlturaDeAtletasFemininasSemMedalha(atletas)
-
-  return {
-    mediaMasculinaOuro,
-    mediaMasculinaSemMedalha,
-    mediaFemininaOuro,
-    mediaFemininaSemMedalha,
-  }
+  return Number(media.toFixed(2)) // Retorna o número com 2 casas decimais
 }
 
 const atlheticsData = fetch('/src/database/athletics.csv')
