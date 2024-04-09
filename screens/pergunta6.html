@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="/src/styles/pergunta.css" />
 
     <title>
-        Monarca das quadras: Descubra a nação que comanda o ouro das quadras olímpicas.
+      Monarca das quadras: Descubra a nação que comanda o ouro das quadras
+      olímpicas.
     </title>
   </head>
   <body>
@@ -17,9 +18,7 @@
         <div class="gradient"></div>
         <img src="/src/assets/img/cards/pergunta6.jpg" alt="pessoa basket" />
         <h2>Monarca das quadras:</h2>
-        <h3>
-            Descubra a nação que comanda o ouro das quadras olímpicas.
-        </h3>
+        <h3>Descubra a nação que comanda o ouro das quadras olímpicas.</h3>
       </div>
 
       <article class="artigo">
@@ -28,38 +27,50 @@
         </h2>
 
         <p class="paragrafo">
-            Se você apostou nos Estados Unidos, acertou em cheio! Os Estados Unidos são o país dominante no basquete olímpico, 
-            acumulando um total impressionante de [Número] medalhas de ouro ao longo dos anos. Desde a introdução do basquete nas Olimpíadas em 1936, 
-            os Estados Unidos estabeleceram um padrão de excelência e conquistaram a admiração de fãs de basquete em todo o mundo.   
+          Se você apostou nos <span class="nome paragrafo"></span>, acertou em
+          cheio! Os <span class="nome paragrafo"></span> são o país dominante no
+          basquete olímpico, acumulando um total impressionante de [Número]
+          medalhas de ouro ao longo dos anos. Desde a introdução do basquete nas
+          Olimpíadas em 1936, os <span class="nome paragrafo"></span>
+          estabeleceram um padrão de excelência e conquistaram a admiração de
+          fãs de basquete em todo o mundo.
         </p>
-        <h3 class="subTitle">
-            Um Legado de Sucesso e Talentos Inigualáveis  
-          </h3>
+        <h3 class="subTitle">Um Legado de Sucesso e Talentos Inigualáveis</h3>
         <p class="paragrafo">
-            A história do basquete olímpico dos Estados Unidos é repleta de momentos memoráveis, 
-            equipes lendárias e jogadores icônicos que deixaram sua marca nas Olimpíadas. 
-            De Michael Jordan a LeBron James, de Magic Johnson a Kobe Bryant, os Estados Unidos 
-            sempre contaram com um elenco de estrelas para representar o país nas quadras olímpicas e conquistar o ouro. 
+          A história do basquete olímpico dos
+          <span class="nome paragrafo"></span> é repleta de momentos memoráveis,
+          equipes lendárias e jogadores icônicos que deixaram sua marca nas
+          Olimpíadas. De Michael Jordan a LeBron James, de Magic Johnson a Kobe
+          Bryant, os <span class="nome paragrafo"></span> sempre contaram com um
+          elenco de estrelas para representar o país nas quadras olímpicas e
+          conquistar o ouro.
         </p>
         <p class="paragrafo">
-            Aos 19 anos, muitos jovens estão apenas começando suas carreiras esportivas, mas Steve Alford já estava fazendo história. 
-            Seu desempenho excepcional e maturidade no jogo chamaram a atenção de todos, consolidando seu status como uma estrela em 
-            ascensão no mundo do basquete. 
+          Aos 19 anos, muitos jovens estão apenas começando suas carreiras
+          esportivas, mas Steve Alford já estava fazendo história. Seu
+          desempenho excepcional e maturidade no jogo chamaram a atenção de
+          todos, consolidando seu status como uma estrela em ascensão no mundo
+          do basquete.
         </p>
         <p class="paragrafo">
-            Além do talento individual, o sucesso contínuo dos Estados Unidos no basquete olímpico também pode ser atribuído à sua abordagem dedicada, 
-            investimento no desenvolvimento de jovens talentos e compromisso com a excelência em todas as áreas do esporte.  
+          Além do talento individual, o sucesso contínuo dos
+          <span class="nome paragrafo"></span> no basquete olímpico também pode
+          ser atribuído à sua abordagem dedicada, investimento no
+          desenvolvimento de jovens talentos e compromisso com a excelência em
+          todas as áreas do esporte.
         </p>
-        <h3 class="subTitle">
-            Um Futuro Brilhante à Vista
-          </h3>
-          <p class="paragrafo">
-            Com uma tradição tão rica e um histórico de sucesso, os Estados Unidos continuam sendo a equipe a ser 
-            batida no basquete olímpico. À medida que nos aproximamos dos próximos Jogos Olímpicos, 
-            os fãs de basquete de todo o mundo aguardam ansiosamente para ver se os Estados Unidos continuarão a reinar supremos 
-            nas quadras e adicionarão mais uma medalha de ouro ao seu impressionante legado olímpico.   
+        <h3 class="subTitle">Um Futuro Brilhante à Vista</h3>
+        <p class="paragrafo">
+          Com uma tradição tão rica e um histórico de sucesso, os
+          <span class="nome paragrafo"></span> continuam sendo a equipe a ser
+          batida no basquete olímpico. À medida que nos aproximamos dos próximos
+          Jogos Olímpicos, os fãs de basquete de todo o mundo aguardam
+          ansiosamente para ver se os <span class="nome paragrafo"></span>
+          continuarão a reinar supremos nas quadras e adicionarão mais uma
+          medalha de ouro ao seu impressionante legado olímpico.
         </p>
-
+      </article>
+    </main>
     <footer>
       <div class="footerCols">
         <a href="/">
@@ -71,5 +82,21 @@
         Nunes
       </span>
     </footer>
+
+    <script type="text/javascript" src="/src/services/index.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        atlheticsData.then(atletas => {
+          const country = paisComMaisMedalhas(atletas)
+
+          const fields = Array.from(document.getElementsByClassName('nome'))
+          fields.forEach((element, index) => {
+            index === 0
+              ? (element.textContent = `${country} (Estados Unidos)`)
+              : (element.textContent = 'Estados Unidos')
+          })
+        })
+      })
+    </script>
   </body>
 </html>
