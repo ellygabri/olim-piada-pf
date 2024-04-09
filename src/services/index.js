@@ -1,6 +1,6 @@
 /*
 Tipagem do objeto de informações dos Atletas
-type Athletic  = {
+type Atleta = {
   age: string,
   city: string,
   event: string,
@@ -20,12 +20,12 @@ type Athletic  = {
 */
 
 const processCSVData = csvData => {
-  const lines = csvData.split('\n')
-  const headers = lines[0].split(',')
+  const lines = csvData.split('\n') // Separa o documento fateando por quebra de linha
+  const headers = lines[0].split(',') // Pega os valores do cabeçario da tabela que contem as categorias dos dados
 
   const cleanValue = value => {
     return value.trim() === 'NA' ? 'NENHUMA' : value.trim()
-  }
+  } // Para o valor "NA" será posto NENHUMA no lugar para ficar claro ao desenvolvedor quando for utilizar
 
   const extractData = line => {
     const currentLine = line.split(',')
@@ -41,15 +41,15 @@ const processCSVData = csvData => {
       )
       return obj
     }, {})
-  }
+  } // Raliza o fateamento separando os valores antes das virgulas
 
   const filterBySport = pessoa => {
     return pessoa.sport && pessoa.sport.toLowerCase() === 'basketball'
-  }
+  } // realiza o filtro de dados olhando somente para o esporte ao qual o site é voltado
 
-  const pessoas = lines.slice(1).map(extractData)
+  const pessoas = lines.slice(1).map(extractData) // a partir da segunda linha, aonde os dados de verdade começam, faz uma varedura das informações e retorna um novo array de dados no formato já desejado
 
-  return pessoas.filter(filterBySport)
+  return pessoas.filter(filterBySport) // retorna os dados filtrados
 }
 
 const buscarPaisesSemMedalhaFeminina = pessoas => {
@@ -61,9 +61,9 @@ const buscarPaisesSemMedalhaFeminina = pessoas => {
     ) {
       return mulher
     }
-  })
+  }) // Realiza um filtro de dados vendo quais objetos no array contem atletas que não ganharam uma competição feminina no verão
 
-  const countries = mulherSemMedalhas.map(pessoa => pessoa.team)
+  const countries = mulherSemMedalhas.map(pessoa => pessoa.team) // Pega o nome do pais no campo team de cada objeto
 
   return countries.filter((country, i) => countries.indexOf(country) === i) // Gera um Array a partir da lista
 }
@@ -77,7 +77,7 @@ const paisComMaisMedalhas = pessoas => {
       acc[pais] = (acc[pais] || 0) + 1
     }
     return acc
-  }
+  } // Conta o numero de medalhas de cada item passado na interação
 
   // Contagem de medalhas de ouro por país
   const medalhasPorPais = pessoas.reduce(contarMedalhasDeOuro, {})
@@ -104,7 +104,7 @@ const atletaJovem = atletas => {
     return atletaMaisJovem
   }
 
-  return atletas.reduce(encontrarJovemComOuro, { age: Infinity })
+  return atletas.reduce(encontrarJovemComOuro, { age: Infinity }) // retorna o nome e idade do atleta mais jovem ganhador de ouro apos verificar qual atleta é
 }
 
 /*
@@ -216,10 +216,10 @@ const mediaDaAlturaDeAtletasFemininasSemMedalha = atletas => {
   return Number(media.toFixed(2)) // Retorna o número com 2 casas decimais
 }
 
-const atlheticsData = fetch('/src/database/athletics.csv')
+const atlheticsData = fetch('/src/database/athletics.csv') // busca o documento csv que usaremos como base dados na pasta database do projeto
   .then(response => {
     return response.text()
-  })
+  }) // ao ler o arquivo tranforma em texto em chamada assincrona
   .then(csvData => {
-    return processCSVData(csvData)
+    return processCSVData(csvData) // ao resolver o passo anterior pega o retorno do dado e faz a leitura das informações montando um array com os objetos no formato desejado para as operações;
   })
