@@ -39,17 +39,20 @@
           Ao analisarmos os atletas que conquistaram medalhas de ouro nas
           competições olímpicas de basquete ao longo dos anos, percebemos que a
           média de altura é notavelmente elevada. Os vencedores geralmente
-          contam com jogadores que ultrapassam a marca dos 2 metros, mostrando a
-          importância da altura no sucesso das equipes.
+          contam com jogadores que ultrapassam a marca dos
+          <span class="nome altura paragrafo"></span>, mostrando a importância
+          da altura no sucesso das equipes.
         </p>
         <h3 class="subTitle">Média de Altura dos Não-Vencedores</h3>
         <p class="paragrafo">
           Por outro lado, ao observarmos os atletas que não conseguiram alcançar
           o topo do pódio olímpico, a média de altura ainda é significativa, mas
-          pode ser um pouco mais variada. Equipes que não conquistaram a medalha
-          de ouro também contam com jogadores de estatura impressionante, porém,
-          outros fatores como habilidade técnica, estratégia de jogo e trabalho
-          em equipe também desempenham papéis fundamentais.
+          pode ser um pouco mais variada sendo de aproximadamente
+          <span class="nome altura paragrafo"></span>. Equipes que não
+          conquistaram a medalha de ouro também contam com jogadores de estatura
+          impressionante, porém, outros fatores como habilidade técnica,
+          estratégia de jogo e trabalho em equipe também desempenham papéis
+          fundamentais.
         </p>
         <h3 class="subTitle">O Impacto da Altura no Desempenho</h3>
         <p class="paragrafo">
@@ -88,5 +91,23 @@
         Nunes</span
       >
     </footer>
+
+    <script type="text/javascript" src="/src/services/index.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        atlheticsData.then(atletas => {
+          const mediaMOuro = mediaDaAlturaDeAtletasMasculinosComOuro(atletas)
+          const mediaMSOuro =
+            mediaDaAlturaDeAtletasMasculinosSemMedalha(atletas)
+
+          const fields = Array.from(document.getElementsByClassName('altura'))
+          fields.forEach((element, index) => {
+            index > 0
+              ? (element.textContent = `${mediaMSOuro} cm`)
+              : (element.textContent = `${mediaMOuro} cm`)
+          })
+        })
+      })
+    </script>
   </body>
 </html>
