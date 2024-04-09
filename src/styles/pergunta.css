@@ -92,3 +92,8 @@ main {
   font-weight: 600;
   font-size: 1.1rem;
 }
+
+.nome {
+  font-weight: bold;
+  color: var(--color-black);
+}
