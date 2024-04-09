@@ -36,9 +36,10 @@
         <h3 class="subTitle">O Impacto da Igualdade de Gênero no Esporte</h3>
         <p class="paragrafo">
           Enquanto o mundo se prepara para celebrar o espírito olímpico, uma
-          estatística surpreendente vem à tona: Pequim possui o registro da
-          maior participação de jogadoras femininas no basquete de toda a
-          história dos Jogos Olímpicos!
+          estatística surpreendente vem à tona:
+          <span class="nome paragrafo"></span> possui o registro da maior
+          participação de jogadoras femininas no basquete de toda a história dos
+          Jogos Olímpicos!
         </p>
         <p class="paragrafo">
           A presença massiva de jogadoras femininas reflete os esforços
@@ -77,5 +78,20 @@
         Nunes
       </span>
     </footer>
+
+    <script type="text/javascript" src="/src/services/index.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        atlheticsData.then(atletas => {
+          const country =
+            cidadeAnfitriaDeJogosOndeTeveMaisAtletasFemininas(atletas)
+          const fields = Array.from(document.getElementsByClassName('nome'))
+
+          fields.forEach(element => {
+            element.textContent = `${country} (Pequim)`
+          })
+        })
+      })
+    </script>
   </body>
 </html>
