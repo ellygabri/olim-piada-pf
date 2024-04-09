@@ -37,44 +37,40 @@
             conquistar o tão desejado ouro olímpico?
         </p>
         <h3 class="subTitle">
-            Yao Ming: O Gigante Chinês 
+            <span class = "alturaNome subTitle" ></span>: O Gigante Chinês 
           </h3>
+       
         <p class="paragrafo">
-            Aos 19 anos, muitos jovens estão apenas começando suas carreiras esportivas, mas Steve Alford já estava fazendo história. 
-            Seu desempenho excepcional e maturidade no jogo chamaram a atenção de todos, consolidando seu status como uma estrela em 
-            ascensão no mundo do basquete. 
-        </p>
-        <p class="paragrafo">
-            Quando falamos de altura e sucesso nas Olimpíadas de basquete, é impossível não mencionar Yao Ming. 
+            Quando falamos de altura e sucesso nas Olimpíadas de basquete, é impossível não mencionar <span class = "alturaNome paragrafo nome" ></span>. 
             O ex-jogador chinês é uma verdadeira lenda do esporte e um dos atletas mais altos a ter brilhado nas Olimpíadas. 
         </p>
         <p class="paragrafo">
-            Com impressionantes 2,29 metros de altura (7 pés e 6 polegadas), Yao Ming não apenas dominava a quadra com sua presença física, 
+            Com impressionantes 2,26 metros de altura (7 pés e 6 polegadas), <span class = "alturaNome paragrafo nome" ></span> não apenas dominava a quadra com sua presença física, 
             mas também com sua habilidade e inteligência de jogo. Ele representou a China em três Olimpíadas consecutivas, 
             conquistando a medalha de ouro nos Jogos Asiáticos de 2002 e sendo uma figura central na equipe chinesa nas Olimpíadas de 2004, 2008 e 2012.  
         </p>
         <p class="paragrafo">
-            Além de suas conquistas olímpicas, Yao Ming teve uma carreira brilhante na NBA,
+            Além de suas conquistas olímpicas, <span class = "alturaNome paragrafo nome" ></span> teve uma carreira brilhante na NBA,
             jogando pelo Houston Rockets e sendo selecionado para o All-Star Game em várias ocasiões.  
         </p>
         <h3 class="subTitle">
             Legado de um Gigante 
           </h3>
           <p class="paragrafo">
-            O impacto de Yao Ming no basquete vai além de suas estatísticas e conquistas individuais.
+            O impacto de <span class = "alturaNome paragrafo nome" ></span> no basquete vai além de suas estatísticas e conquistas individuais.
             Ele ajudou a popularizar o esporte na China e a inspirar uma nova geração de jovens jogadores asiáticos a perseguir seus sonhos nas quadras.  
         </p>
         <p class="paragrafo">
-            O impacto de Yao Ming no basquete vai além de suas estatísticas e conquistas individuais.
+            O impacto de <span class = "alturaNome paragrafo nome" ></span> no basquete vai além de suas estatísticas e conquistas individuais.
             Ele ajudou a popularizar o esporte na China e a inspirar uma nova geração de jovens jogadores asiáticos a perseguir seus sonhos nas quadras.  
         </p>
         <p class="paragrafo">
             Sua combinação de altura, habilidade e carisma tornou-o não apenas um ícone do basquete, mas também um embaixador global do esporte. 
-            Mesmo após sua aposentadoria, Yao Ming continua envolvido com o basquete e trabalha para promover o desenvolvimento do esporte em todo o mundo.
+            Mesmo após sua aposentadoria, <span class = "alturaNome paragrafo nome" ></span> continua envolvido com o basquete e trabalha para promover o desenvolvimento do esporte em todo o mundo.
         </p>
         <p class="paragrafo">
             Em um esporte repleto de talentos e jogadores excepcionais, 
-            Yao Ming se destaca como o atleta mais alto a ter sucesso nas Olimpíadas de basquete. 
+            <span class = "alturaNome paragrafo nome" ></span> se destaca como o atleta mais alto a ter sucesso nas Olimpíadas de basquete. 
             Sua trajetória inspiradora e seu legado no esporte continuarão sendo lembrados por gerações, 
             mostrando que, às vezes, ser um verdadeiro gigante pode fazer toda a diferença no jogo.
         </p>
@@ -93,5 +89,23 @@
         Nunes
       </span>
     </footer>
+
+
+    <script type="text/javascript" src="/src/services/index.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        atlheticsData.then(atletas => {
+          const atleta = altetaDeBasqueteMaisAltoQueJaCompetiuNasOlimpiadas(atletas)
+          const fields = Array.from(document.getElementsByClassName('alturaNome'))
+
+          fields.forEach(element => {
+            element.textContent = atleta.name
+          });
+
+         console.log({atleta:atleta,fields})
+        })
+        
+      })
+    </script>
   </body>
 </html>
