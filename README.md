@@ -1,6 +1,9 @@
 Integrantes do grupo:
+
 Caiuã Gomes Nunes - (Lentolan) - <https://github.com/Lentolan>
+
 Gabrielly de Oliveira Souza - (ellygabri) - <https://github.com/ellygabri>
+
 João Vitor Dias Sandes - (vitordias32) - <https://github.com/vitordias32>
 
 Link de acesso ao site hospedado no netlify: <https://slamdunkfever.netlify.app/>
